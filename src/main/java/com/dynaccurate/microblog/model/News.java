@@ -7,7 +7,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class News {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @NotNull
     private String title;
@@ -34,16 +33,22 @@ public class News {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id_user")
     private User user;
 
     @OneToMany(mappedBy = "news")
-    private List<Comment> comments = new ArrayList<>();
+    private List<Comment> comments;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "news_tag", joinColumns = @JoinColumn(name = "id_news")
-            , inverseJoinColumns = @JoinColumn(name = "id_tags"))
-    private List<Tag> tags = new ArrayList<>();
+            , inverseJoinColumns = @JoinColumn(name = "id_tag"))
+    private List<Tag> tags;
 
 
+    public News(String title, String content, User user) {
+        super();
+        this.title = title;
+        this.content = content;
+        this.user = user;
+    }
 }

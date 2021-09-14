@@ -1,5 +1,6 @@
 package com.dynaccurate.microblog.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @NotNull
     private String name;
@@ -24,6 +25,7 @@ public class User {
     @NotNull
     private String email;
 
+    @JsonIgnore
     @NotNull
     private String password;
 
