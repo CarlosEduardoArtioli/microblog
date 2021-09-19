@@ -38,4 +38,10 @@ public class Comment {
     @JoinColumn(name = "id_news")
     private News news;
 
+    public Comment(String content, User user, News news) {
+        super();
+        this.content = content;
+        this.user = user;
+        this.news = news;
+    }
 }
